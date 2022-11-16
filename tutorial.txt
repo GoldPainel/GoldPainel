@@ -15,7 +15,7 @@ Se estiver usando o Termux da playstore siga os passos abaixo, caso use termux m
         Apos carregar tudo de os seguinte comando
         1°      pkg upgrade -y && pkg upgade -y
         2°      pkg install git
-        3°      git clone (SEU GIT)
+        3°      git clone https://github.com/GoldPainel/Gold_Painel
         4°      cd Gold_Painel
         5°      sh install.sh
 
