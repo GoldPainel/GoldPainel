@@ -1,0 +1,25 @@
+Se estiver usando o Termux da playstore siga os passos abaixo, caso use termux modificado, pule pra etapa 2 :)
+
+    ETAPA 1:
+        1- Assim que instalar o Termux de o seguinte comando:
+        *    termux-change-repo
+        *    use as setas para se locomover e marque as 3 opcoes usando o ESPAÇO
+        *    apos isso de ENTER
+        feito? 
+        *    agora marque a 3° opcão com ESPAÇO e de ENTER novamente
+
+        pronto, vai carregar e atualizar varias coisas, não faça nada! Apenas espere...
+
+        ✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️
+    ETAPA 2:
+        Apos carregar tudo de os seguinte comando
+        1°      pkg upgrade -y && pkg upgade -y
+        2°      pkg install git
+        3°      git clone (SEU GIT)
+        4°      cd Gold_Painel
+        5°      sh install.sh
+
+        ✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️
+    AVISO:
+        Feito isso vai instalar todas as dependencias nescessarias e iniciar o script
+        CASO O SCRIPT NAO INICIE DIGITE python main.py
