@@ -90,13 +90,13 @@ def menu():
 
 def painel_consultas():
     system('clear')
-    print('     𝒫𝒜ℐ𝒩ℰℒ 𝒟ℰ 𝒞𝒪𝒩𝒮𝒰ℒ𝒯𝒜𝒮')
+    print('     PAINEL DE CONSULTAS')
     print(cor('''[10] Consulta IP (GRATIS)
 [20] Consulta Cep (GRATIS)
 [30] Consulta Cnpj (GRATIS)
-[40] Consulta Cpf (ᖇ$1,00 𝒞𝒜𝒟𝒜 𝒞𝒪𝒩𝒮𝒰ℒ)
-[50] Consulta Nome (ᖇ$0,50 𝒞𝒜𝒟𝒜 𝒞𝒪𝒩𝒮𝒰ℒ)
-[60] Consulta Telefone (ᖇ$0,50 𝒞𝒜𝒟𝒜 𝒞𝒪𝒩𝒮𝒰ℒ)
+[40] Consulta Cpf (ᖇ$1,00 CADA CONSUL)
+[50] Consulta Nome (ᖇ$0,50 CADA CONSUL)
+[60] Consulta Telefone (ᖇ$0,50 CADA CONSUL)
 [95] Redes Sociais
 [99] Voltar''', 'blue'))
     o = input('DIGITE A OPCAO: ')
