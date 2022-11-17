@@ -1,9 +1,9 @@
 green='\033[0;32m' 
 apt update -y
 apt upgrade -y
-pip install python -y
-pip install python2 -y
-pip install python3 -y
+pkg install python -y
+pkg install python2 -y
+pkg install python3 -y
 pip install os -y
 pip install termcolor -y 
 pip install requests -y
