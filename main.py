@@ -825,12 +825,12 @@ TIPO CHAVE: ALEATORIA''')
         print(cor(f'''
         CHAVE: bda0f13d-4408-42af-9fd1-0afd3aeff7ad
         VALOR: {valor}''', 'green'))
-                print('''
+        print('''
 QUANDO PAGAR DIGITE [ 1 ] PARA FINALIZAR O PEDIDO''')
-                vaipagar = input('DIGITE A OPCAO: ')
-                if vaipagar == '1':
-                    system('clear')
-                    message = f'''Salveeeeeeeeeeeee
+        vaipagar = input('DIGITE A OPCAO: ')
+        if vaipagar == '1':
+            system('clear')
+            message = f'''Salveeeeeeeeeeeee
 Acabaram de efetuar uma consulta de placa
 PAGADOR = {nome}
 CONTATO = {wpp}
@@ -839,28 +839,28 @@ PLACA = {placa}
 TOTAL PAGO = {valor}
 
 É NOIS CHEFE, ÓTIMO DIAAAAAA'''
-                    url_base = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={message}'
-                    requests.get(url_base)
-                    print(cor('PEDIDO ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE RECEBERA UMA MENSAGEM EM BREVE', 'green'))
-                    time.sleep(4)
-                    print(cor('''    DESEJA FAZER OUTRA CONSULTA?
+            url_base = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={message}'
+            requests.get(url_base)
+            print(cor('PEDIDO ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE RECEBERA UMA MENSAGEM EM BREVE', 'green'))
+            time.sleep(4)
+            print(cor('''    DESEJA FAZER OUTRA CONSULTA?
 [1]Sim
 [2]Nao
 ''', 'blue'))
-                    nv = input('DIGITE A OPCAO: ')
-                    if nv == '1':
-                        buscar_placa()
-                    if nv == '2':
-                        menu_vendas()
-                    else:
-                        system('clear')
-                        print(cor('OPCAO INVALIDA!!!', 'red'))
-                        exit()
-                else:
-                    system('clear')
-                    print(cor('SOMENTE OPCAO 1 DISPONIVEL!!!', 'red'))
-                    time.sleep(3)
-                    buscar_placa()
+            nv = input('DIGITE A OPCAO: ')
+            if nv == '1':
+                buscar_placa()
+            if nv == '2':
+                menu_vendas()
+            else:
+                system('clear')
+                print(cor('OPCAO INVALIDA!!!', 'red'))
+                exit()
+        else:
+            system('clear')
+            print(cor('SOMENTE OPCAO 1 DISPONIVEL!!!', 'red'))
+            time.sleep(3)
+            buscar_placa()
                     
     if opc == '2':
         system('clear')
