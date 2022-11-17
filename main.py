@@ -57,7 +57,7 @@ SENHA: {NovaSenha}'''
 
 def menu():
     system('clear')
-    print(cor('''>>>>>>     𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.5       <<<<<<
+    print(cor('''>>>>>>     𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.0      <<<<<
         T̲O̲D̲O̲S̲ O̲S̲ D̲I̲R̲E̲I̲T̲O̲S̲ R̲E̲S̲E̲R̲V̲A̲D̲O̲S̲ 🅡
         
 [1]Cadastrar
@@ -172,7 +172,7 @@ apenas digite 1 e de ENTER''', 'green'))
         
 def menu_vendas():
     system('clear')
-    print(cor('''★   𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.5   ★
+    print(cor('''★   𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.0   ★
             painel criado (14/11/2022)
 
 [0]Fechar Programa
@@ -183,7 +183,7 @@ def menu_vendas():
 
 [3]Recarga Vivo (Credito pela metade do valor)
 
-[4]Painel Consultas
+[4]Painel Consultas GOLD V1.0.0(beta)
 
 [5]Dar Sugestao
 
@@ -843,7 +843,7 @@ TOTAL PAGO = R${somar}
     if escolha == '2':
         system('clear')
         print(cor('Retornando...', 'red'))
-        time.sleep(3)
+        time.sleep(2)
         menu_vendas()
 
     else:
@@ -1060,12 +1060,12 @@ def puxar_cep():
         puxar_cep()
 
     if 'erro' not in result:
-        print(f'''    RESUMO DO PEDIDO:
-CEP: {cep}''')
+        system('clear')
+        print(f'''    CEP: {cep}''')
         g = input(cor('''   DESEJA CONSULTAR?
 [1]Sim
 [2]Nao
-: '''))
+: ''', 'yellow'))
         if g == '1' or 'sim' or 'Sim':
             system('clear')
             print('     CEP ENCONTRADO :)')
@@ -1113,7 +1113,8 @@ def puxar_cnpj():
     result = requests.get(f'https://api-publica.speedio.com.br/buscarcnpj?cnpj={cnpj}').json()
     system('clear')
     if 'error' not in result:
-        print(f'CNPJ: {cnpj}')
+        system('clear')
+        print(f'       CNPJ: {cnpj}')
         j = input(cor('''DESEJA CONSULTAR?
 [1]Sim
 [2]Nao''', 'yellow'))
