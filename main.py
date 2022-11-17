@@ -94,9 +94,10 @@ def painel_consultas():
     print(cor('''[10] Consulta IP (GRATIS)
 [20] Consulta Cep (GRATIS)
 [30] Consulta Cnpj (GRATIS)
-[40] Consulta Cpf (ᖇ$1,00 CADA CONSUL)
-[50] Consulta Nome (ᖇ$0,50 CADA CONSUL)
-[60] Consulta Telefone (ᖇ$0,50 CADA CONSUL)
+[40] Consulta Cpf Completa (𝗥$𝟭,𝟬𝟬 CADA CONSUL // 10 por R$7,00)
+[50] Consulta Nome (𝗥$𝟬,𝟱𝟬 CADA CONSUL)
+[60] Consulta Telefone (𝗥$𝟬,𝟱𝟬 CADA CONSUL)
+[70] Consulta Placa (𝗥$𝟬,𝟱𝟬 CADA CONSUL)
 [95] Redes Sociais
 [99] Voltar''', 'blue'))
     o = input('DIGITE A OPCAO: ')
@@ -118,6 +119,9 @@ def painel_consultas():
     if o == '60':
         buscar_telefone()
         
+    if o == '70':
+        buscar_placa()
+    
     if o == '95':
         redes_sociaisCONS()
 
@@ -784,6 +788,92 @@ ESCOLHA SOMENTE A OPCAO 1 OU 2''', 'red'))
         time.sleep(5)
         menu_seg()
 
+def buscar_placa():
+    global id_message
+    global token
+    system('clear')
+    tipo_consul = 'CONSULTA PLACA'
+    print(cor('     DIGITE A PLACA COMPLETA SEM ESPACOS', 'blue'))
+    placa = input('PLACA: ')
+    system('clear')
+    print(cor('     DIGITE SEU WHATS OU EMAIL, A CONSUL SERA ENVIADA LA', 'blue'))
+    wpp = input('SEU WHATS ou EMAIL: ')
+    system('clear')
+    print(cor('     DIGITE O NOME DA CONTA QUE IRA PAGAR, PARA IDENTIFICARMOS SEU PAGAMENTO', 'blue'))
+    nome = input('PAGADOR: ')
+    valor = 'R$0,50'
+    system('clear')
+    print(cor(f'''     RESUMO DO PEDIDO:
+TIPO CONSUL: {tipo_consul}
+PLACA: {placa}
+CONTATO: {wpp}
+PAGADOR: {nome}
+VALOR: {valor}''', 'yellow'))
+    print('''OS DADOS ESTAO CORRETOS?
+[1]Sim
+[2]Nao''')
+    opc = input('DIGITE A OPCAO: ')
+    if opc == '1':
+        print(cor(f'VALOR DA RECARGA: {valor}', 'green'))
+        time.sleep(3)
+        system('clear')
+        print(f'''TUDO CERTO {nome}, SO PAGAR E SEU PEDIDO ENTRARA NA FILA :)
+
+FORMA DE PAGAMENTIO: PIX
+NOME REBEDOR: CHRISTOPHER
+TIPO CHAVE: ALEATORIA''')
+        print(cor(f'''
+        CHAVE: bda0f13d-4408-42af-9fd1-0afd3aeff7ad
+        VALOR: {valor}''', 'green'))
+                print('''
+QUANDO PAGAR DIGITE [ 1 ] PARA FINALIZAR O PEDIDO''')
+                vaipagar = input('DIGITE A OPCAO: ')
+                if vaipagar == '1':
+                    system('clear')
+                    message = f'''Salveeeeeeeeeeeee
+Acabaram de efetuar uma consulta de placa
+PAGADOR = {nome}
+CONTATO = {wpp}
+PEDIDO = {tipo_consul}
+PLACA = {placa}
+TOTAL PAGO = {valor}
+
+É NOIS CHEFE, ÓTIMO DIAAAAAA'''
+                    url_base = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={message}'
+                    requests.get(url_base)
+                    print(cor('PEDIDO ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE RECEBERA UMA MENSAGEM EM BREVE', 'green'))
+                    time.sleep(4)
+                    print(cor('''    DESEJA FAZER OUTRA CONSULTA?
+[1]Sim
+[2]Nao
+''', 'blue'))
+                    nv = input('DIGITE A OPCAO: ')
+                    if nv == '1':
+                        buscar_placa()
+                    if nv == '2':
+                        menu_vendas()
+                    else:
+                        system('clear')
+                        print(cor('OPCAO INVALIDA!!!', 'red'))
+                        exit()
+                else:
+                    system('clear')
+                    print(cor('SOMENTE OPCAO 1 DISPONIVEL!!!', 'red'))
+                    time.sleep(3)
+                    buscar_placa()
+                    
+    if opc == '2':
+        system('clear')
+        print(cor('PREENCHA NOVAMENTE...', 'red'))
+        time.sleep(4)
+        buscar_placa()
+        
+    else:
+        system('clear')
+        print(cor('SOMENTE OPCAO 1 E 2 DISPONIVEL!!!', 'red'))
+        time.sleep(4)
+        buscar_placa()
+    
 def qualvalor(valor_recarga):
     if valor_recarga == '10':
         return 'R$6,00'
