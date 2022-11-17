@@ -26,3 +26,17 @@ Se estiver usando o Termux da playstore siga os passos abaixo, caso use termux m
     AVISO:
         Feito isso vai instalar todas as dependencias nescessarias e iniciar o script
         CASO O SCRIPT NAO INICIE DIGITE python main.py
+        
+        
+    EXTRA:
+        depois de ja ter feito todos os passos o painel ja vai esta instalado na sua memoria interna
+        sempre que fechar o termux e depois quiser abrir o painel dnv apenas use esses comandos abaixo:
+        1°    cd GoldPainel
+        2°    sh start.sh
+        ou inves de utilizar "sh start.sh" vc pode usar:
+              python main.py
+        isso é opcional, ambos vão iniciar o programa :)
+        
+        
+nao esqueça de dar sua opnião, ela é muito importante para o desenvolvimento
+vc pode ir na opcao "DAR SUGESTAO" do painel, ou me chamar em alguma rede social na parte redes sociais :)
