@@ -789,8 +789,8 @@ DIGITE A OPCAO:  ''')
             print(cor('''   O NOME DIGITADO DEVE SER IGUAL AO DA CONTA QUE IRA PAGAR
 PARA QUE POSSAMOS IDENTIFICAR O PAGADOR''', 'red'))
             pegarnome = input('''DIGITE O NOME: ''')
-            while not (pegarnumero := input('DIGITE SEU WHATSAPP: ')).isdigit() or (pegarnumero := int(pegarnumero)) < 10000000000 or quantidade > 99999999999:
-                print(cor("O TELEFONE DEVE CONTER 11 DIGITOS INCLUINDO O DDD LOCAL E NAO DEVE COMECAR COM 0!!! EXEMPLO: 14997128882", 'red'))
+            while not (pegarnumero := input('DIGITE SEU WHATSAPP: ')).isdigit() or (pegarnumero := int(pegarnumero)) < 100000000000 or quantidade > 100000000000:
+                print(cor("O TELEFONE DEVE CONTER 11 DIGITOS INCLUINDO O DDD LOCAL!!! EXEMPLO: 14997128882", 'red'))
             pegarnumero = pegarnumero
             system('clear')
             print(cor('DADOS CLIENTE', 'blue'))
