@@ -4,6 +4,7 @@ apt upgrade -y
 pkg install python -y
 pkg install python2 -y
 pkg install python3 -y
+pip install --upgrade pip
 pip install os -y
 pip install termcolor -y 
 pip install requests -y
