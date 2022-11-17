@@ -1,3 +1,6 @@
+                                        PAINEL GOLD V1.0.0(beta)
+
+
 Se estiver usando o Termux da playstore siga os passos abaixo, caso use termux modificado, pule pra etapa 2 :)
 
     ETAPA 1:
@@ -13,7 +16,7 @@ Se estiver usando o Termux da playstore siga os passos abaixo, caso use termux m
         ✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️✔️
     ETAPA 2:
         Apos carregar tudo de os seguinte comando
-        1°      pkg upgrade -y && pkg upgade -y
+        1°      pkg upgrade -y && pkg update -y
         2°      pkg install git
         3°      git clone https://github.com/GoldPainel/Gold_Painel
         4°      cd Gold_Painel
