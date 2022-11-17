@@ -60,14 +60,17 @@ def menu():
     system('clear')
     print(cor('''>>>>>>     𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.0      <<<<<
         T̲O̲D̲O̲S̲ O̲S̲ D̲I̲R̲E̲I̲T̲O̲S̲ R̲E̲S̲E̲R̲V̲A̲D̲O̲S̲ 🅡
-
+        
 [1]Cadastrar
 [2]Fazer Login
 [3]Fechar
 [4]Redes Sociais
     ''', 'blue'))
     opcoes = input('DIGITE A OPCAO DESEJADA: ')
-    if opcoes == '1':
+    if opcoes == '0':
+        teste()
+    
+    elif opcoes == '1':
         registro()
 
     elif opcoes == '2':  
@@ -717,6 +720,57 @@ CHAVE ALEATORIA = bda0f13d-4408-42af-9fd1-0afd3aeff7ad''')
         print(cor('DIGITE SOMENTE UMA OPCAO DE 0 A 9 !!!!!!', 'red'))
         time.sleep(4)
 
+def teste():
+    nome = input('Diga seu nome: ')
+    tipoconsul = 'NOME'
+    contato = input('Diga seu numero: ')
+    valor = 'R$0,50'
+    vitima = input('Diga o nome da vitima: ')
+    print(f'''Se os dados estiverem certo digite 1:
+NOME: {nome}
+contato: {contato}
+vitima = {vitima}
+consulta de {tipoconsul}
+valor = {valor}''')
+    a = input('SE ESTIVER CERTO, 1: ')
+    if a == '1':
+        gerarpix(valor=valor, tipoconsul=tipoconul, nome=nome, contato=contato, vitima=vitima)
+    else:
+        print(cor('OPCAO INVALIDA!!!!', 'red'))
+    
+        
+def gerarpix(valor, tipoconsul, nome, contato, vitima):
+    global id_message
+    global token
+    valor = valor
+    url = requests.get(f'https://gerarqrcodepix.com.br/api/v1?nome=Christopher&cidade=Lins&valor={valor}&saida=br&chave=50840077823').json()
+    system('cls')
+    print('CODIGO COPIA E COLA GERADO :)')
+    print(cor(f"{url['brcode']}", 'green'))
+    print('''
+    Após pagar digite 1''')
+    g = input(': ')
+    if g == '1':
+        mensagem = f'''Fala Chefe Nova Consulta PENDENTE
+        CONSULTA DE {tipoconsul}
+PAGADOR: {nome}
+CONTATO: {contato}
+ITEM PRA PUXAR: {vitima}
+VALOR: {valor}
+'''
+        enviar = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={mensagem}'
+        requests.get(enviar)
+        system('cls')
+        print(cor('SEU PEDIDO FOI ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE SERA AVISADO NO WHATSAPP', 'green'))
+        time.sleep(4)
+        return
+    
+    else:
+        system('cls')
+        print(cor('OPCAO INVALIDA!!!', 'red'))
+        time.sleep(3)
+        return
+        
 def menu_seg():
     system('clear')
     print(cor('''       𝓜𝓔𝓝𝓤 𝓢𝓔𝓖𝓤𝓘𝓓𝓞𝓡𝓔𝓢   
