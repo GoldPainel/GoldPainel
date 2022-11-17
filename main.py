@@ -734,7 +734,7 @@ consulta de {tipoconsul}
 valor = {valor}''')
     a = input('SE ESTIVER CERTO, 1: ')
     if a == '1':
-        gerarpix(valor=valor, tipoconsul=tipoconul, nome=nome, contato=contato, vitima=vitima)
+        gerarpix(valor=valor, tipoconsul=tipoconsul, nome=nome, contato=contato, vitima=vitima)
     else:
         print(cor('OPCAO INVALIDA!!!!', 'red'))
     
