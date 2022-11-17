@@ -799,7 +799,7 @@ VALOR: R${somar}
 PERFIL: {pegarinsta}
 NOME: {pegarnome}
 NUMERO: {pegarnumero}''')
-            time.sleep(10)
+            time.sleep(2)
             print(cor('''
 SE OS DADOS ESTIVEREM CORRETO DIGITE 1
 SE ESTIVER ERRADO DIGITE 2''', 'blue'))
