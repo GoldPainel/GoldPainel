@@ -53,12 +53,11 @@ USER: {NovoUsuario}
 SENHA: {NovaSenha}'''
             url = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={mensagem}'
             requests.get(url)
-            time.sleep(4)
             exit()
 
 def menu():
     system('clear')
-    print(cor('''>>>>>>     𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.0      <<<<<
+    print(cor('''>>>>>>     𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.5       <<<<<<
         T̲O̲D̲O̲S̲ O̲S̲ D̲I̲R̲E̲I̲T̲O̲S̲ R̲E̲S̲E̲R̲V̲A̲D̲O̲S̲ 🅡
         
 [1]Cadastrar
@@ -141,7 +140,7 @@ def login():
     if user == True:
         print(cor('''SENHA CONFIRMADA!
 INICIANDO SCRIPT...''', 'green'))    
-        time.sleep(3)
+        time.sleep(1)
         menu_vendas()
 
     else:
@@ -173,7 +172,7 @@ apenas digite 1 e de ENTER''', 'green'))
         
 def menu_vendas():
     system('clear')
-    print(cor('''★   𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.0   ★
+    print(cor('''★   𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.5   ★
             painel criado (14/11/2022)
 
 [0]Fechar Programa
@@ -184,7 +183,7 @@ def menu_vendas():
 
 [3]Recarga Vivo (Credito pela metade do valor)
 
-[4]Painel Consultas GOLD V1.0.0(beta)
+[4]Painel Consultas
 
 [5]Dar Sugestao
 
@@ -725,7 +724,7 @@ def gerarpix(valor, tipoconsul, nome, contato, vitima):
     global id_message
     global token
     valor = valor
-    url = requests.get(f'https://gerarqrcodepix.com.br/api/v1?nome=Christopher&cidade=Lins&valor={valor}&saida=br&chave=50840077823').json()
+    url = requests.get(f'https://gerarqrcodepix.com.br/api/v1?nome=Christopher&cidade=Lins&valor={valor}&saida=br&chave=bda0f13d-4408-42af-9fd1-0afd3aeff7ad').json()
     system('clear')
     print('CODIGO COPIA E COLA GERADO :)')
     print(cor(f"{url['brcode']}", 'green'))
@@ -780,61 +779,66 @@ DIGITE A OPCAO:  ''')
             return
         quantidade = quantidade
         somar = quantidade * 0.0021
-        to = somar[0:3]
-        pegarinsta = input('DIGITE SEU @: ')
-        print(cor('''   O NOME DIGITADO DEVE SER IGUAL AO DA CONTA QUE IRA PAGAR
+        if somar < 5.00:
+            system('clear')
+            print(cor(f'SEU PEDIDO FOI R${somar} PEDIDO MINIMO É R$5,00', 'red'))
+            time.sleep(5)
+            menu_seg()
+        else:
+            pegarinsta = input('DIGITE SEU @: ')
+            print(cor('''   O NOME DIGITADO DEVE SER IGUAL AO DA CONTA QUE IRA PAGAR
 PARA QUE POSSAMOS IDENTIFICAR O PAGADOR''', 'red'))
-        pegarnome = input('''DIGITE O NOME: ''')
-        while not (pegarnumero := input('DIGITE SEU WHATSAPP: ')).isdigit() or (pegarnumero := int(pegarnumero)) < 10000000000 or quantidade > 99999999999:
-            print(cor("O TELEFONE DEVE CONTER 11 DIGITOS INCLUINDO O DDD LOCAL E NAO DEVE COMECAR COM 0!!! EXEMPLO: 14997128882", 'red'))
-        pegarnumero = pegarnumero
-        system('clear')
-        print(cor('DADOS CLIENTE', 'blue'))
-        print(f'''PRODUTO: {quantidade} SEGUIDORES
-VALOR: R${to}
+            pegarnome = input('''DIGITE O NOME: ''')
+            while not (pegarnumero := input('DIGITE SEU WHATSAPP: ')).isdigit() or (pegarnumero := int(pegarnumero)) < 10000000000 or quantidade > 99999999999:
+                print(cor("O TELEFONE DEVE CONTER 11 DIGITOS INCLUINDO O DDD LOCAL E NAO DEVE COMECAR COM 0!!! EXEMPLO: 14997128882", 'red'))
+            pegarnumero = pegarnumero
+            system('clear')
+            print(cor('DADOS CLIENTE', 'blue'))
+            print(f'''PRODUTO: {quantidade} SEGUIDORES
+VALOR: R${somar}
 PERFIL: {pegarinsta}
 NOME: {pegarnome}
 NUMERO: {pegarnumero}''')
-        time.sleep(10)
-        print(cor('''
+            time.sleep(10)
+            print(cor('''
 SE OS DADOS ESTIVEREM CORRETO DIGITE 1
 SE ESTIVER ERRADO DIGITE 2''', 'blue'))
-        verificar_dados = input('DIGITE A OPCAO: ')
-        if verificar_dados == '1':
-            system('clear')
-            print(cor('Pague utilizando pix, DADOS ABAIXO: ', 'green'))
-            print(cor(f'''
+            verificar_dados = input('DIGITE A OPCAO: ')
+            if verificar_dados == '1':
+                system('clear')
+                print(cor('Pague utilizando pix, DADOS ABAIXO: ', 'green'))
+                print(cor(f'''
 NOME = CHRISTOPHER ALEXANDRE
-VALOR = R${to}
+VALOR = R${somar}
 (SE O VALOR ESTIVER QUEBRADO, ARREDONDE NO PAGAMENTO)
 CHAVE ALEATORIA = bda0f13d-4408-42af-9fd1-0afd3aeff7ad''', 'green'))
-            
-            confirmarpag = input('Se ja pagou digite 1: ')
-            if confirmarpag == '1':
-                message = f'''Salveeeeeeeeeeeee
+                
+                confirmarpag = input('Se ja pagou digite 1: ')
+                if confirmarpag == '1':
+                    message = f'''Salveeeeeeeeeeeee
 Acabaram de efetuar uma compra de seguidores
 NOME = {pegarnome}
 INSTAGRAM = {pegarinsta}
 NUMERO = {pegarnumero}
 PEDIDO = {quantidade} SEGUIDORES
-TOTAL PAGO = R${to}
+TOTAL PAGO = R${somar}
 
 É NOIS CHEFE, ÓTIMO DIAAAAAA'''
-                url_base = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={message}'
-                requests.get(url_base)
+                    url_base = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={message}'
+                    requests.get(url_base)
+                    system('clear')
+                    print(cor('SEU PEDIDO FOI ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE SERA AVISADO NO WHATSAPP', 'green'))
+                    time.sleep(4)
+                    menu_seg()
+                    
+                else:
+                    print('Digite somente a opcao 1')
+                    
+            if verificar_dados == '2':
                 system('clear')
-                print(cor('SEU PEDIDO FOI ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE SERA AVISADO NO WHATSAPP', 'green'))
+                print(cor('Preencha Novamente', 'red'))
                 time.sleep(4)
-                menu_seg()
-                
-            else:
-                print('Digite somente a opcao 1')
-                
-        if verificar_dados == '2':
-          system('clear')
-          print(cor('Preencha Novamente', 'red'))
-          time.sleep(4)
-          menu_vendas()
+                menu_vendas()
 
     if escolha == '2':
         system('clear')
@@ -845,7 +849,7 @@ TOTAL PAGO = R${to}
     else:
         print(cor('''
 ESCOLHA SOMENTE A OPCAO 1 OU 2''', 'red'))
-        time.sleep(5)
+        time.sleep(3)
         menu_seg()
 
 def buscar_placa():
@@ -861,14 +865,14 @@ def buscar_placa():
     system('clear')
     print(cor('     DIGITE O NOME DA CONTA QUE IRA PAGAR, PARA IDENTIFICARMOS SEU PAGAMENTO', 'blue'))
     nome = input('PAGADOR: ')
-    valor = 'R$0.50'
+    valor = '0.50'
     system('clear')
     print(cor(f'''     RESUMO DO PEDIDO:
 TIPO CONSUL: {tipo_consul}
 PLACA: {vitima}
 CONTATO: {contato}
 PAGADOR: {nome}
-VALOR: {valor}''', 'yellow'))
+VALOR: R${valor}''', 'yellow'))
     print('''OS DADOS ESTAO CORRETOS?
 [1]Sim
 [2]Nao''')
@@ -981,9 +985,6 @@ NUMERO: {pegarnumero}
 CREDITOS: {valor_recarga}''')
             escolha = input('DIGITE 1 PARA PROSSEGUIR: ')
             if escolha == '1':
-                print(cor(f'VALOR DA RECARGA: {valor}', 'green'))
-                time.sleep(3)
-                system('clear')
                 print(f'''TUDO CERTO {pegarnome}, SO PAGAR E SEU PEDIDO ENTRARA NA FILA :)
 
 FORMA DE PAGAMENTIO: PIX
@@ -1053,16 +1054,22 @@ def puxar_cep():
     cep = input(cor('CEP: '))
     url_base = requests.get(f'https://viacep.com.br/ws/{cep}/json/')
     result = url_base.json()
-    time.sleep(3)
     if result == SystemError:
         print(cor('CEP INVALIDO !!!!!', 'red'))
         time.sleep(4)
         puxar_cep()
 
     if 'erro' not in result:
-        system('clear')
-        print('     CEP ENCONTRADO :)')
-        print(cor(f'''
+        print(f'''    RESUMO DO PEDIDO:
+CEP: {cep}''')
+        g = input(cor('''   DESEJA CONSULTAR?
+[1]Sim
+[2]Nao
+: '''))
+        if g == '1' or 'sim' or 'Sim':
+            system('clear')
+            print('     CEP ENCONTRADO :)')
+            print(cor(f'''
 CEP: {result['cep']}
 RUA: {result['logradouro']}
 COMPLEMENTO: {result['complemento']}
@@ -1073,20 +1080,27 @@ IBGE: {result['ibge']}
 GIA: {result['gia']}
 DDD: {result['ddd']}
 SIAFI: {result['siafi']}
-''', 'green'))
-        print(cor('''
+    ''', 'green'))
+            print(cor('''
 [1]Consultar Novamente
 [2]Voltar
-        '''))
-        op = input('''DIGITE UMA OPCAO: ''')
-        if op == '1':
-            puxar_cep()
-        if op == '2':
+            ''', 'yellow'))
+            op = input('''DIGITE UMA OPCAO: ''')
+            if op == '1':
+                puxar_cep()
+            if op == '2':
+                painel_consultas()
+            else:
+                print(cor('SOMENTE OPCAO 1 OU 2 DISPONIVEL', 'red'))
+                time.sleep(3)
+                painel_consultas()
+        if g == '1' or 'nao' or 'Nao':
             painel_consultas()
         else:
-            print(cor('SOMENTE OPCAO 1 OU 2 DISPONIVEL', 'red'))
-            time.sleep(3)
-            painel_consultas()
+            system('clear')
+            print(cor('OPCAO INVALIDA!!!', 'red'))
+            time.sleep(4)
+            puxar_cep()
     else:
         print(cor('Cep Invalido!!!', 'red'))
         time.sleep(4)
@@ -1097,16 +1111,20 @@ def puxar_cnpj():
     print(cor('     DIGITE O CNPJ SEM TRACOS OU BARRAS!!!', 'blue'))
     cnpj = input('CNPJ: ')
     result = requests.get(f'https://api-publica.speedio.com.br/buscarcnpj?cnpj={cnpj}').json()
-    time.sleep(3)
     system('clear')
     if 'error' not in result:
-        system('clear')
-        print('INICIANDO CONSULTA.....'), 'green'
-        time.sleep(2)
-        system('clear')
-        print('      CNPJ ENCONTRADO :)')
-        time.sleep(2)
-        resultado = f'''
+        print(f'CNPJ: {cnpj}')
+        j = input(cor('''DESEJA CONSULTAR?
+[1]Sim
+[2]Nao''', 'yellow'))
+        if j == '1' or 'sim' or 'Sim':
+            system('clear')
+            print('INICIANDO CONSULTA.....'), 'green'
+            time.sleep(2)
+            system('clear')
+            print('      CNPJ ENCONTRADO :)')
+            time.sleep(2)
+            resultado = f'''
 Nome Fantasia: {result['NOME FANTASIA']}
 Razao Social: {result['RAZAO SOCIAL']}
 Cnpj: {result['CNPJ']}
@@ -1126,28 +1144,27 @@ Complemento: {result['COMPLEMENTO']}
 Bairro: {result['BAIRRO']}
 Cidade: {result['MUNICIPIO']}
 Estado: {result['UF']}
-'''
-        system('clear')
-        print(cor(resultado, 'green'))
-        time.sleep(7)
-        print('''DESEJA CONSULTAR NOVAMENTE?
-[1]SIM
-[2]VOLTAR''')
-        verresposta = input('DIGITE A OPCAO: ')
-        if verresposta == '1':
-            result.clear()
-            time.sleep(4)
-            puxar_cnpj()
-
-        if verresposta == '2':
+    '''
             system('clear')
-            time.sleep(3)
-            painel_consultas()
+            print(cor(resultado, 'green'))
+            print(cor('''DESEJA CONSULTAR NOVAMENTE?
+[1]SIM
+[2]VOLTAR''', 'yellow'))
+            verresposta = input('DIGITE A OPCAO: ')
+            if verresposta == '1':
+                result.clear()
+                time.sleep(4)
+                puxar_cnpj()
 
-        else:
-            print(cor('OPCAO INVALIDA!!!', 'red'))
-            time.sleep(3)
-            painel_consultas()
+            if verresposta == '2':
+                system('clear')
+                time.sleep(3)
+                painel_consultas()
+
+            else:
+                print(cor('OPCAO INVALIDA!!!', 'red'))
+                time.sleep(3)
+                painel_consultas()
                 
     else:
         system('clear')
@@ -1222,7 +1239,7 @@ NUMERO DE CONTATO = {numero}
         exit()
 
 def enviar_consultaNOME(tipo_consulta, pagador, numero, nome):
-    system('cls')
+    system('clear')
     global token
     global id_message
     mensagem = f'''Salveeeeeeeeeeeee
@@ -1303,7 +1320,7 @@ AS: {result['as']}
 def puxar_cpf():
     system('clear')
     tipo_consul = 'CONSULTA CPF'
-    valor = 'R$1.00'
+    valor = '1.00'
     print(cor('     DIGITE O CPF QUE DESEJA CONSULTAR', 'blue'))
     vitima = input('CPF VITIMA: ')
     print(cor('     DIGITE SEU WHATSAPP A CONSULTA SERA ENVIADA LA', 'blue'))
@@ -1317,7 +1334,7 @@ def puxar_cpf():
 CONTATO: {contato}
 VITIMA: {vitima}
 TIPO DA CONSULTA: {tipo_consul}
-VALOR: {valor}
+VALOR: R${valor}
     ''', 'yellow'))
     yes = input('''SEU PEDIDO ESTA CORRETO?
 [1]Sim
@@ -1355,7 +1372,7 @@ VALOR: {valor}
     
 def puxar_nome():
     system('clear')
-    valor = 'R$0.50'
+    valor = '0.50'
     tipo_consul = 'CONSULTA NOME'
     time.sleep(1)
     print(cor('     DIGITE O NOME A SER CONSULTADO (TEM QUE SER COMPLETO)', 'blue'))
@@ -1404,7 +1421,7 @@ QUEM PAGOU? {nome}''')
 def buscar_telefone():
     system('clear')
     time.sleep(2)
-    valor = 'R$0.50'
+    valor = '0.50'
     tipo_consul = 'CONSULTA NUMERO'
     print(cor('     DIGITE O NUMERO A SER CONSULTADO (com DDD)', 'blue'))
     vitima = input('NUMERO VITIMA: ')
