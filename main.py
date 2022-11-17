@@ -65,12 +65,10 @@ def menu():
 [2]Fazer Login
 [3]Fechar
 [4]Redes Sociais
+[99]Atualizar Painel
     ''', 'blue'))
     opcoes = input('DIGITE A OPCAO DESEJADA: ')
-    if opcoes == '0':
-        teste()
-    
-    elif opcoes == '1':
+    if opcoes == '1':
         registro()
 
     elif opcoes == '2':  
@@ -81,6 +79,9 @@ def menu():
 
     elif opcoes == '4':
         redes_sociais()
+
+    elif opcoes == '99':
+        atualizar()
 
     else:
         system('clear')
@@ -719,32 +720,13 @@ CHAVE ALEATORIA = bda0f13d-4408-42af-9fd1-0afd3aeff7ad''')
         system('clear')
         print(cor('DIGITE SOMENTE UMA OPCAO DE 0 A 9 !!!!!!', 'red'))
         time.sleep(4)
-
-def teste():
-    nome = input('Diga seu nome: ')
-    tipoconsul = 'NOME'
-    contato = input('Diga seu numero: ')
-    valor = 'R$0,50'
-    vitima = input('Diga o nome da vitima: ')
-    print(f'''Se os dados estiverem certo digite 1:
-NOME: {nome}
-contato: {contato}
-vitima = {vitima}
-consulta de {tipoconsul}
-valor = {valor}''')
-    a = input('SE ESTIVER CERTO, 1: ')
-    if a == '1':
-        gerarpix(valor=valor, tipoconsul=tipoconsul, nome=nome, contato=contato, vitima=vitima)
-    else:
-        print(cor('OPCAO INVALIDA!!!!', 'red'))
-    
-        
+          
 def gerarpix(valor, tipoconsul, nome, contato, vitima):
     global id_message
     global token
     valor = valor
     url = requests.get(f'https://gerarqrcodepix.com.br/api/v1?nome=Christopher&cidade=Lins&valor={valor}&saida=br&chave=50840077823').json()
-    system('cls')
+    system('clear')
     print('CODIGO COPIA E COLA GERADO :)')
     print(cor(f"{url['brcode']}", 'green'))
     print('''
@@ -752,21 +734,21 @@ def gerarpix(valor, tipoconsul, nome, contato, vitima):
     g = input(': ')
     if g == '1':
         mensagem = f'''Fala Chefe Nova Consulta PENDENTE
-        CONSULTA DE {tipoconsul}
+            CONSULTA DE {tipoconsul}
 PAGADOR: {nome}
 CONTATO: {contato}
-ITEM PRA PUXAR: {vitima}
+PUXAR: {vitima}
 VALOR: {valor}
 '''
         enviar = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={mensagem}'
         requests.get(enviar)
-        system('cls')
+        system('clear')
         print(cor('SEU PEDIDO FOI ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE SERA AVISADO NO WHATSAPP', 'green'))
-        time.sleep(4)
-        return
+        time.sleep(5)
+        return True
     
     else:
-        system('cls')
+        system('clear')
         print(cor('OPCAO INVALIDA!!!', 'red'))
         time.sleep(3)
         return
@@ -798,6 +780,7 @@ DIGITE A OPCAO:  ''')
             return
         quantidade = quantidade
         somar = quantidade * 0.0021
+        to = somar[0:3]
         pegarinsta = input('DIGITE SEU @: ')
         print(cor('''   O NOME DIGITADO DEVE SER IGUAL AO DA CONTA QUE IRA PAGAR
 PARA QUE POSSAMOS IDENTIFICAR O PAGADOR''', 'red'))
@@ -808,7 +791,7 @@ PARA QUE POSSAMOS IDENTIFICAR O PAGADOR''', 'red'))
         system('clear')
         print(cor('DADOS CLIENTE', 'blue'))
         print(f'''PRODUTO: {quantidade} SEGUIDORES
-VALOR: R${somar}
+VALOR: R${to}
 PERFIL: {pegarinsta}
 NOME: {pegarnome}
 NUMERO: {pegarnumero}''')
@@ -822,7 +805,7 @@ SE ESTIVER ERRADO DIGITE 2''', 'blue'))
             print(cor('Pague utilizando pix, DADOS ABAIXO: ', 'green'))
             print(cor(f'''
 NOME = CHRISTOPHER ALEXANDRE
-VALOR = R${somar}
+VALOR = R${to}
 (SE O VALOR ESTIVER QUEBRADO, ARREDONDE NO PAGAMENTO)
 CHAVE ALEATORIA = bda0f13d-4408-42af-9fd1-0afd3aeff7ad''', 'green'))
             
@@ -834,7 +817,7 @@ NOME = {pegarnome}
 INSTAGRAM = {pegarinsta}
 NUMERO = {pegarnumero}
 PEDIDO = {quantidade} SEGUIDORES
-TOTAL PAGO = R${somar}
+TOTAL PAGO = R${to}
 
 É NOIS CHEFE, ÓTIMO DIAAAAAA'''
                 url_base = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={message}'
@@ -871,19 +854,19 @@ def buscar_placa():
     system('clear')
     tipo_consul = 'CONSULTA PLACA'
     print(cor('     DIGITE A PLACA COMPLETA SEM ESPACOS', 'blue'))
-    placa = input('PLACA: ')
+    vitima = input('PLACA: ')
     system('clear')
     print(cor('     DIGITE SEU WHATS OU EMAIL, A CONSUL SERA ENVIADA LA', 'blue'))
-    wpp = input('SEU WHATS ou EMAIL: ')
+    contato = input('SEU WHATS ou EMAIL: ')
     system('clear')
     print(cor('     DIGITE O NOME DA CONTA QUE IRA PAGAR, PARA IDENTIFICARMOS SEU PAGAMENTO', 'blue'))
     nome = input('PAGADOR: ')
-    valor = 'R$0,50'
+    valor = 'R$0.50'
     system('clear')
     print(cor(f'''     RESUMO DO PEDIDO:
 TIPO CONSUL: {tipo_consul}
-PLACA: {placa}
-CONTATO: {wpp}
+PLACA: {vitima}
+CONTATO: {contato}
 PAGADOR: {nome}
 VALOR: {valor}''', 'yellow'))
     print('''OS DADOS ESTAO CORRETOS?
@@ -891,53 +874,23 @@ VALOR: {valor}''', 'yellow'))
 [2]Nao''')
     opc = input('DIGITE A OPCAO: ')
     if opc == '1':
-        print(cor(f'VALOR DA RECARGA: {valor}', 'green'))
-        time.sleep(3)
-        system('clear')
-        print(f'''TUDO CERTO {nome}, SO PAGAR E SEU PEDIDO ENTRARA NA FILA :)
-
-FORMA DE PAGAMENTIO: PIX
-NOME REBEDOR: CHRISTOPHER
-TIPO CHAVE: ALEATORIA''')
-        print(cor(f'''
-        CHAVE: bda0f13d-4408-42af-9fd1-0afd3aeff7ad
-        VALOR: {valor}''', 'green'))
-        print('''
-QUANDO PAGAR DIGITE [ 1 ] PARA FINALIZAR O PEDIDO''')
-        vaipagar = input('DIGITE A OPCAO: ')
-        if vaipagar == '1':
-            system('clear')
-            message = f'''Salveeeeeeeeeeeee
-Acabaram de efetuar uma consulta de placa
-PAGADOR = {nome}
-CONTATO = {wpp}
-PEDIDO = {tipo_consul}
-PLACA = {placa}
-TOTAL PAGO = {valor}
-
-É NOIS CHEFE, ÓTIMO DIAAAAAA'''
-            url_base = f'https://api.telegram.org/bot{token}/sendMessage?chat_id={id_message}&text={message}'
-            requests.get(url_base)
-            print(cor('PEDIDO ADICIONADO A FILA, SE TUDO OCORRER BEM VOCE RECEBERA UMA MENSAGEM EM BREVE', 'green'))
-            time.sleep(4)
-            print(cor('''    DESEJA FAZER OUTRA CONSULTA?
-[1]Sim
-[2]Nao
-''', 'blue'))
-            nv = input('DIGITE A OPCAO: ')
-            if nv == '1':
-                buscar_placa()
-            if nv == '2':
-                menu_vendas()
+        gerar = gerarpix(valor=valor, tipoconsul=tipo_consul, nome=nome, contato=contato, vitima=vitima)
+        if gerar == True:
+            print('Oq deseja fazer agora ?')
+            px = input(cor('''[1]Consultar Novamente
+[2]Voltar''', 'yellow'))
+            if px == '1':
+                puxar_nome()
+            if px >= '2':
+                painel_consultas()
             else:
                 system('clear')
                 print(cor('OPCAO INVALIDA!!!', 'red'))
-                exit()
+                time.sleep(3)
+                puxar_nome()
         else:
-            system('clear')
-            print(cor('SOMENTE OPCAO 1 DISPONIVEL!!!', 'red'))
-            time.sleep(3)
-            buscar_placa()
+            exit()
+    
                     
     if opc == '2':
         system('clear')
@@ -1269,7 +1222,7 @@ NUMERO DE CONTATO = {numero}
         exit()
 
 def enviar_consultaNOME(tipo_consulta, pagador, numero, nome):
-    system('clear')
+    system('cls')
     global token
     global id_message
     mensagem = f'''Salveeeeeeeeeeeee
@@ -1349,115 +1302,171 @@ AS: {result['as']}
          
 def puxar_cpf():
     system('clear')
-    tipo_consulta = 'CONSULTA CPF'
+    tipo_consul = 'CONSULTA CPF'
+    valor = 'R$1.00'
     print(cor('     DIGITE O CPF QUE DESEJA CONSULTAR', 'blue'))
-    cpf = input('CPF VITIMA: ')
+    vitima = input('CPF VITIMA: ')
     print(cor('     DIGITE SEU WHATSAPP A CONSULTA SERA ENVIADA LA', 'blue'))
-    numero = input('SEU WPP: ')
+    contato = input('SEU WPP: ')
     print(cor('   DIGITE O NOME DE QUEM IRA PAGAR PARA IDENTIFICARMOS O PAGAMENTO', 'blue'))
-    pagador = input('SEU NOME: ')
+    nome = input('SEU NOME: ')
     time.sleep(3)
     system('clear')
-    print(cor(f'''           DADOS PARA PAGAR:
-CERTIFIQUE-SE DE PAGAR COM A CONTA NOME = {pagador}
-para identificarmos o pagamento
+    print('     RESUMO DO PEDIDO')
+    print(cor(f'''PAGADOR: {nome} 
+CONTATO: {contato}
+VITIMA: {vitima}
+TIPO DA CONSULTA: {tipo_consul}
+VALOR: {valor}
+    ''', 'yellow'))
+    yes = input('''SEU PEDIDO ESTA CORRETO?
+[1]Sim
+[2]Nao
+: ''')
+    if yes == '1':
+        gerar = gerarpix(valor=valor, tipoconsul=tipo_consul, nome=nome, contato=contato, vitima=vitima)
+        if gerar == True:
+            system('clear')
+            print(cor('''OQ DESEJA FAZER AGORA?
+[1]Consultar Novamente
+[2]Voltar''', 'yellow'))
+            con = input('DIGITE UMA OPCAO: ')
+            if con == '1':
+                puxar_cpf()
+            if con == '2':
+                painel_consultas()
+            else:
+                system('clear')
+                print(cor('OPCAO INVALIDA!!!',  'red'))
+                time.sleep(3)
+                puxar_cpf()
 
-NOME = CHRISTOPHER ALEXANDRE
-VALOR = R$1,00
-CHAVE ALEATORIA = bda0f13d-4408-42af-9fd1-0afd3aeff7ad''', 'green'))
-    pag = input('       APOS PAGAR DIGITE 1: ')
-    if pag == '1':
-        enviar_consultaCPF(tipo_consulta, pagador, cpf, numero)
+        else:
+            exit()
+
+    if yes == '2':
+        puxar_cpf()
+    
     else:
-        print(cor('OPCAO INVALIDA...', 'red'))
+        system('clear')
+        print(cor('OPCAO INVALIDA!!!', 'red'))
         time.sleep(3)
         puxar_cpf()
-
+    
 def puxar_nome():
     system('clear')
-    tipo_consulta = 'CONSULTA NOME'
+    valor = 'R$0.50'
+    tipo_consul = 'CONSULTA NOME'
     time.sleep(1)
     print(cor('     DIGITE O NOME A SER CONSULTADO (TEM QUE SER COMPLETO)', 'blue'))
-    nome = input('NOME VITIMA: ')
+    vitima = input('NOME VITIMA: ')
     system('clear')
     print(cor('     DIGITE SEU WHATSAPP COM DDD, A CONSULTA SERA ENVIADA LA!', 'blue'))
-    numero = input('SEU WPP: ')
+    contato = input('SEU WPP: ')
     system('clear')
     print(cor('     NOME DE QUEM IRA PAGAR PARA IDENTIFICARMOS SEU PAGAMENTO','blue'))
-    pagador = input('SEU NOME: ')
+    nome = input('SEU NOME: ')
     system('clear')
     print(f'''
-NOME A CONSULTAR {nome}
-WHATSAPP PARA RECEBER A CONSULTA: {numero}
-QUEM PAGOU? {pagador}''')
+NOME A CONSULTAR {vitima}
+WHATSAPP PARA RECEBER A CONSULTA: {contato}
+QUEM PAGOU? {nome}''')
     a = input(cor(f'''OS DADOS ESTAO CORRETOS ?
 [1]Sim
 [2]Nao
 :''', 'yellow'))
     if a == '1':
-        system('clear')
-        print(cor(f'''           DADOS PARA PAGAR:
-CERTIFIQUE-SE DE PAGAR COM A CONTA NOME = {pagador}
-para identificarmos o pagamento
-
-NOME = CHRISTOPHER ALEXANDRE
-VALOR = R$0,50
-CHAVE ALEATORIA = bda0f13d-4408-42af-9fd1-0afd3aeff7ad''', 'green'))
-        pag = input('   APOS PAGAR DIGITE 1: ')
-        if pag == '1':
-            enviar_consultaNOME(tipo_consulta, pagador, numero, nome)
+        gerar = gerarpix(valor=valor, tipoconsul=tipo_consul, nome=nome, contato=contato, vitima=vitima)
+        if gerar == True:
+            print('Oq deseja fazer agora ?')
+            px = input(cor('''[1]Consultar Novamente
+[2]Voltar''', 'yellow'))
+            if px == '1':
+                puxar_nome()
+            if px >= '2':
+                painel_consultas()
+            else:
+                system('clear')
+                print(cor('OPCAO INVALIDA!!!', 'red'))
+                time.sleep(3)
+                puxar_nome()
         else:
-            print(cor('OPCAO INVALIDA...', 'red'))
+            exit()
+                
     if a == '2':
-        painel_consultas()
+        puxar_nome()
     else:
         system('clear')
         print(cor('OPCAO INVALIDA!!!', 'red'))
-        time.sleep(4)
+        time.sleep(3)
         puxar_nome()
 
 def buscar_telefone():
     system('clear')
     time.sleep(2)
-    tipo_consulta = 'CONSULTA NUMERO'
+    valor = 'R$0.50'
+    tipo_consul = 'CONSULTA NUMERO'
     print(cor('     DIGITE O NUMERO A SER CONSULTADO (com DDD)', 'blue'))
-    numeroconsultado = input('NUMERO VITIMA: ')
+    vitima = input('NUMERO VITIMA: ')
     system('clear')
     print(cor('     DIGITE SEU WHATSAPP A CONSULTA SERA ENVIADA LA', 'blue'))
-    numero = input('SEU WPP: ')
+    contato = input('SEU WPP: ')
     system('clear')
     print(cor('     NOME DE QUEM IRA PAGAR PRA IDENTIFICARMOS SEU PAGAMENTO', 'blue'))
-    pagador = input('SEU NOME: ')
+    nome = input('SEU NOME: ')
     system('clear')
     print(cor(f'''RESUMO DA CONSULTA:
-TELEFONE A CONSULTAR: {numeroconsultado}
-WHATSAPP RECEBEDOR: {numero}
-QUEM PAGOU? {pagador}
+TELEFONE A CONSULTAR: {vitima}
+WHATSAPP RECEBEDOR: {contato}
+QUEM PAGOU? {nome}
 ''', 'yellow'))
     a = input(cor('''OS DADOS ESTAO CORRETOS ?
 [1]Sim
 [2]Voltar
 : '''))
     if a == '1':
-        system('clear')
-        print(cor(f'''          DADOS PARA PAGAR:
-CERTIFIQUE-SE DE PAGAR COM A CONTA NOME = {pagador}
-para identificarmos o pagamento
-
-NOME = CHRISTOPHER ALEXANDRE
-VALOR = R$0,50
-CHAVE ALEATORIA = bda0f13d-4408-42af-9fd1-0afd3aeff7ad''', 'green'))
-        pag = input('   APOS PAGAR DIGITE 1: ')
-        if pag == '1':
-            enviar_consulttelefone(tipo_consulta, pagador, numero, numeroconsultado)
+        gerar = gerarpix(valor=valor, tipoconsul=tipo_consul, nome=nome, contato=contato, vitima=vitima)
+        if gerar == True:
+            print('Oq deseja fazer agora ?')
+            px = input(cor('''[1]Consultar Novamente
+[2]Voltar''', 'yellow'))
+            if px == '1':
+                buscar_telefone()
+            if px >= '2':
+                painel_consultas()
+            else:
+                system('clear')
+                print(cor('OPCAO INVALIDA!!!', 'red'))
+                time.sleep(3)
+                buscar_telefone()
         else:
-            print(cor('OPCAO INVALIDA...', 'red'))
-            time.sleep(3)
-            buscar_telefone()
-
+            exit()
+                
     if a == '2':
         buscar_telefone()
 
+    else:
+        system('clear')
+        print(cor('OPCAO INVALIDA!!!', 'red'))
+        time.sleep(3)
+        buscar_telefone()
+
+def atualizar():
+    system('clear')
+    print(('''FIQUE SEMPRE DE OLHO NO NOSSO CANAL NO GITHUB!
+SEMPRE ATUALIZAMOS DIRETO POR LA :)
+SITE: https://github.com/GoldPainel/GoldPainel
+    caso queira garantir a atualização, apague a pasta e de o comando
+    git clone https://github.com/GoldPainel/GoldPainel''', 'blue'))
+    back = input(cor('DIGITE 1 PRA VOLTAR: ', 'yellow'))
+    if back == '1':
+        menu()
+    else:
+        system('clear')
+        print(cor('OPCAO INVALIDA!!!', 'red'))
+        time.sleep(3)
+        atualizar()
+        
 def dar_sugestao():
     global token
     global id_message
