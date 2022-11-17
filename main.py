@@ -63,7 +63,7 @@ def menu():
 
 [1]Cadastrar
 [2]Fazer Login
-[3]Sair
+[3]Fechar
 [4]Redes Sociais
     ''', 'blue'))
     opcoes = input('DIGITE A OPCAO DESEJADA: ')
@@ -74,10 +74,7 @@ def menu():
         login()
 
     elif opcoes == '3':
-        system('clear')
-        print(cor('Ate logo...', 'red'))
-        time.sleep(2)
-        exit()    
+        fechar()    
 
     elif opcoes == '4':
         redes_sociais()
@@ -149,10 +146,33 @@ INICIANDO SCRIPT...''', 'green'))
         time.sleep(2)
         registro()
 
+def fechar():
+    system('clear')
+    print(cor('''Se vc iniciou o programa
+usando "sh start.sh ou sh install.sh" vc deve fecha-lo manualmente clicando no botao CTRL e na letra C e dando ENTER
+''', 'yellow'))
+    print(cor('''SE VOCE INICIOU USANDO "python main.py"
+apenas digite 1 e de ENTER''', 'green'))
+    opc = input(': ')
+    if opc == '1':
+        system('clear')
+        print('Fecharemos em 3 segundos...')
+        time.sleep(3)
+        system('clear')
+        print(cor('Ate logo... :)', 'green'))
+        exit()
+    else:
+        system('clear')
+        print(cor('OPCAO INVALIDA!!!', 'red'))
+        time.sleep(3)
+        fechar()
+        
 def menu_vendas():
     system('clear')
     print(cor('''★   𝒑𝒂𝒊𝒏𝒆𝒍 𝒈𝒐𝒍𝒅 𝑽1.0.0   ★
             painel criado (14/11/2022)
+
+[0]Fechar Programa
 
 [1]Menu Dimas FF (metade do preco)
 
@@ -167,6 +187,9 @@ def menu_vendas():
 [10]Redes Sociais
 ''', 'blue'))
     escolha = input('Digite a opcao desejada: ')
+    if escolha == '0':
+        fechar()
+    
     if escolha == '1':
         menu_dimas()
 
