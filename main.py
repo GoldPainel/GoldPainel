@@ -64,6 +64,7 @@ def menu():
 [2]Fazer Login
 [3]Fechar
 [4]Redes Sociais
+[5]Site
 [99]Atualizar Painel
     ''', 'blue'))
     opcoes = input('DIGITE A OPCAO DESEJADA: ')
@@ -78,6 +79,10 @@ def menu():
 
     elif opcoes == '4':
         redes_sociais()
+
+    elif opcoes == '5':
+        ursite = 'https://gldrecargas.online'
+        system(f'termux-open-url {ursite'})
 
     elif opcoes == '99':
         atualizar()
@@ -1623,6 +1628,7 @@ digite a opcao para ser redirecionado para a rede social''')
 [1] WhatsApp
 [2] Telegram
 [3] Instagram
+[4] Site (seguidores apartir de R$0,50 precos otimos para revenda!)
 [20]Voltar''', 'blue'))
     v = input('DIGITE A OPCAO: ')
     if v == '1':
@@ -1643,6 +1649,10 @@ digite a opcao para ser redirecionado para a rede social''')
         system('termux-open-url https://www.instagram.com/goldziin')
         time.sleep(3)
         redes_sociais()
+    if v == '4':
+        system('clear')
+        print('Abrindo o site...')
+        system(termux-open-url https://gldrecargas.online)
     if v == '20':
         menu()
     else:
