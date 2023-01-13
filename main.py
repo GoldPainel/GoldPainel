@@ -82,7 +82,7 @@ def menu():
 
     elif opcoes == '5':
         system('clear')
-        print(cor('Abrindo o site...' 'yellow'))
+        print(cor('Abrindo o site...', 'yellow'))
         ursite = 'https://gldrecargas.online'
         system(f'termux-open-url {ursite}')
         menu()
