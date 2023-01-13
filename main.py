@@ -1652,7 +1652,7 @@ digite a opcao para ser redirecionado para a rede social''')
     if v == '4':
         system('clear')
         print('Abrindo o site...')
-        system(termux-open-url https://gldrecargas.online)
+        system('termux-open-url https://gldrecargas.online')
     if v == '20':
         menu()
     else:
