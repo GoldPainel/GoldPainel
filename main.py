@@ -81,8 +81,11 @@ def menu():
         redes_sociais()
 
     elif opcoes == '5':
+        system('clear')
+        print(cor('Abrindo o site...' 'yellow'))
         ursite = 'https://gldrecargas.online'
         system(f'termux-open-url {ursite}')
+        return
 
     elif opcoes == '99':
         atualizar()
