@@ -82,7 +82,7 @@ def menu():
 
     elif opcoes == '5':
         ursite = 'https://gldrecargas.online'
-        system(f'termux-open-url {ursite'})
+        system(f'termux-open-url {ursite}')
 
     elif opcoes == '99':
         atualizar()
