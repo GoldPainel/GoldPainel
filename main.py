@@ -85,7 +85,7 @@ def menu():
         print(cor('Abrindo o site...' 'yellow'))
         ursite = 'https://gldrecargas.online'
         system(f'termux-open-url {ursite}')
-        return
+        menu()
 
     elif opcoes == '99':
         atualizar()
